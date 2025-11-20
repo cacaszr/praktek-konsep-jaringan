@@ -18,12 +18,11 @@ Transmission Control Protocol (TCP) merupakan protokol Lapisan Transport yang be
 
 ## 1. tcp_server.py.
 
-
-import socket
-if __name__ == "__main__":
+    import socket
+    if __name__ == "__main__":
     ip = "127.0.0.1"
     port = 4444
-
+    
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((ip, port))
     server.listen(5)
@@ -42,12 +41,11 @@ if __name__ == "__main__":
 
 ## 2. tcp_client.py.
 
-
-import socket
-if __name__ == "__main__":
+    import socket
+    if__name__ == "__main__":  
     ip = "127.0.0.1"
     port = 4444
-
+    
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.connect((ip, port))
 
@@ -85,22 +83,22 @@ User Datagram Protocol (UDP) bekerja secara langsung dan tanpa sesi. Protokol in
 ## 1. udp_server.py.
 
 
-import socket
-localIP     = "127.0.0.1"
-localPort   = 9997
-buffer      = 1024
+    import socket
+    localIP     = "127.0.0.1"
+    localPort   = 9997
+    buffer      = 1024
 
-serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-serverSocket.bind((localIP, localPort)) # menyalakan server UDP
+    serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    serverSocket.bind((localIP, localPort)) # menyalakan server UDP
 
-print("Server Up")
+    print("Server Up")
 
-#listening
-while(True):
-    data = serverSocket.recvfrom(buffer)
-    pesan = data[0].decode()
-    ip_addr = data[1]
-
+    #listening
+    while(True):
+        data = serverSocket.recvfrom(buffer)
+        pesan = data[0].decode()
+        ip_addr = data[1]
+    
     print("Pesan dari client: \"{}\"".format(pesan))
     print("IP client: \"{}\"".format(ip_addr))
 
@@ -110,20 +108,20 @@ while(True):
 ## 1. udp_client.py.
 
 
-import socket
-target_host = "127.0.0.1"
-target_port = 9997
+    import socket
+    target_host = "127.0.0.1"
+    target_port = 9997
 
-client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
+    client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
 
-#kirim data
-client.sendto(b"Test Salsabilla", (target_host, target_port))
+    #kirim data
+    client.sendto(b"Test Salsabilla", (target_host, target_port))
 
-#menerima data
-data, addr = client.recvfrom(4096)
-print("Pesan dari server: \"{}\"".format(data.decode()))
+    #menerima data
+    data, addr = client.recvfrom(4096)
+    print("Pesan dari server: \"{}\"".format(data.decode()))
 
-client.close()
+    client.close()
 
 
 ### Alur Eksekusi UDP
@@ -145,3 +143,4 @@ Analisa perbandingan antara Transmission Control Protocol (TCP) dan User Datagra
 ## Penutup
 
 Percobaan ini berhasil mendemonstrasikan perbedaan mendasar antara komunikasi TCP dan UDP menggunakan Python. Pemilihan protokol yang tepat sangat bergantung pada tujuan aplikasi yang dibangun, apakah memprioritaskan keutuhan data (TCP) atau kecepatan transmisi (UDP).
+
